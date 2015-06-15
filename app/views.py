@@ -17,7 +17,7 @@ def before_request():
 @app.route('/feed', methods =  ['GET', 'POST'])
 def index():
     user = g.user
-    if g.user is None:
+    if g.user is None or not g.user.is_authenticated():
         return redirect(url_for('login'))
     if not user.is_following(user):
         db.session.add(user.follow(user))
@@ -88,7 +88,7 @@ def login():
 @app.route('/settings', methods = ['GET', 'POST'])
 def settings():
     if g.user is None or not g.user.is_authenticated():
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     form = SettingsForm()
     if form.validate_on_submit():
         if (md5(form.oldpass.data).hexdigest() == md5(g.user.password).hexdigest()) and (form.newpass.data == form.passagain.data != None):
@@ -118,7 +118,7 @@ def settings():
 @login_required
 def user(login):
     user = User.query.filter_by(nickname=login).first()
-    if g.user == None:
+    if g.user is None or not g.user.is_authenticated():
         redirect(url_for('login'))
     if user == None:
         flash('User not found')
@@ -146,10 +146,6 @@ def followers():
     return render_template("followers.html",
         users = users,
         user = g.user)
-
-
-
-
 
 
 @app.route('/follow/<nickname>')

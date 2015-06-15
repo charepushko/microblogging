@@ -20,7 +20,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-12" style="{% if user.style %} background-image: url({{user.style}}); background-size: cover; {% else %} backgroung-image: url("/static/twitter-header-install-2.jpg"); background-size: cover;  background: linear-gradient(to top, #C6C6C6, #FFFFFF); {% endif %} margin-bottom:20px; height:300px; border-radius:10px; padding: 10px;" >
+                <div class="col-md-12" style="{% if user.style %} background-image: url({{user.style}}); background-size: cover; {% else %}  background: linear-gradient(to top, #C6C6C6, #FFFFFF); {% endif %} margin-bottom:20px; height:300px; border-radius:10px; padding: 10px;" >
   
                       <br><br><br>
                       <center>  <h1>{% if user.title %} {{user.title}} {% else %}The Great Title Of The Great Diary {% endif %}</h1>  <center>
@@ -46,7 +46,7 @@
 
                        <button onClick='location.href="/index"' style="background: linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 15px 15px 0 0;"> Feed </button> 
                        <button onClick='location.href="/followers"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666;"> People reading me </button> 
-                       <button onClick='location.href=""' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666;"> People I read </button> 
+                       <button onClick='location.href="/followings"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666;"> People I read </button> 
 {% if user.id == g.user.id %}                       <button onClick='location.href="/settings"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;" > Settings </button> 
 {% elif not g.user.is_following(user) %}            <button onClick='location.href="/follow/{{user.nickname}}"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;"> Follow </button>                     
 {% else %}                                          <button onClick='location.href="/unfollow/{{user.nickname}}"'style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;"> Unfollow </button>

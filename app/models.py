@@ -1,4 +1,3 @@
-
 from app import db
 
 followers = db.Table('followers',
@@ -55,7 +54,9 @@ class User(db.Model):
         return Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(followers.c.follower_id == self.id).order_by(Post.post_date.asc())
 
     def follows_you(self):
-         return User.query.join(followers, ((followers.c.followed_id != self.id) and (followers.c.followed_id == User.id))).filter(followers.c.follower_id == self.id)
+         return User.query.join(followers, (followers.c.followed_id is User.id).filter(followers.c.follower_id == self.id)
+
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
