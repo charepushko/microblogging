@@ -1,24 +1,76 @@
 <html>
+<head>
 
-<head> </head>
+<meta http-equiv="X-UA-Compatible"
 
-<body> 
+content="IE=edge">
 
+<meta name="viewport"
 
-    <form action="" method="post" name="login">
+content="width=device-width, initial-scale=1">
 
-        {{form.hidden_tag()}}
-email:
-        {{form.openid(size=80)}}
-<br> {% for error in form.errors.openid %}
-<i style="color: red;"> [{{error}}] </i>
-{% endfor %} <br>
-remember-me:
-        {{form.remember_me}}
+<link href="/static/css/bootstrap.min.css"
 
-    <input type="submit" value="Sign In">
+rel="stylesheet">
+
+</head>
+
+<body
+
+background="http://tonkosti.ru/images/f/f7/%D0%97%D0%B0%D0%BA%D0%B0%D1%82_%D0%BD%D0%B0_%D0%A4%D0%B8%D0%BB%D0%B8%D0%BF%D0%BF%D0%B8%D0%BD%D0%B0%D1%85.jpg">
+
+<div class="container">
+
+<div class="row" style="height:200px;"></div>
+
+<div class="row">
+
+<div class="col-md-7"
+
+style="height:200px;"
+
+align="right"> <h1 style="color:yellow;"> Sign up...</h1>
+
+<form action="" method="post" name="signup">
+
+{{form_s.hidden_tag()}}
+
+<h4>login:</h4>
+{{form_s.login(size=25)}}
+
+<h4>email:</h4> {{form_s.email(size=50)}}
+
+<h4>password:</h4>  {{form_s.password(size=50)}}
+
+<br> <input class="btn btn-info btn-sm" type="submit" value="Sign Up"></input>
 
 </form>
+</div>
+
+<div class="col-lg-5" valign="left">
+<h1 style="color:yellow;"> or sign in if you can!</h1>
+
+<form action="" method="post" name="login">
+
+{{form_l.hidden_tag()}}
+
+<h4>email:</h4>
+{{form_l.openid(size=25)}}
+
+<h4>password:</h4>
+{{form_l.password(size=50)}}
+
+<h4>remember-me:</h4> {{form_l.remember_me}}
+
+<br> <input class="btn btn-info btn-sm" type="submit" value="Sign In"></input>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
 
 </body>
 

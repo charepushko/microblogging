@@ -1,6 +1,21 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% block content %}
 
-<h1> Welcome home, {{user.nickname}}! </h1>
+<br><br>
+
+{% for post in posts %}
+               <div style="background-image: url(/static/images/paper/{{post.design}}.png); background-size: 100% 100%; ">
+                   <br>
+                   <br><br> <center>
+                   <p align="left" style="width: 460px;"><i> {{post.text}} </i> </p>
+                                   <br>
+                   <b><p align="right" style="width: 460px;">- {{post.author.nickname}} </p></b> <br> <br> <br>
+                   </center>
+
+               </div>
+{% endfor %}
+
+
+<br>
 
 {% endblock %} 

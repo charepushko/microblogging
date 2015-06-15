@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <title> Hey Guy Microblog</title>
+
+  </head>
+  <body {% if user.background %} background="{{user.background}}" {% else %} background="/static/bg.png" {% endif %}>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"> </script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+<br>
+
+
+  <div class="container">
+     <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-12" style="{% if user.style %} background-image: url({{user.style}}); background-size: cover; {% else %} backgroung-image: url("/static/twitter-header-install-2.jpg"); background-size: cover;  background: linear-gradient(to top, #C6C6C6, #FFFFFF); {% endif %} margin-bottom:20px; height:300px; border-radius:10px; padding: 10px;" >
+  
+                      <br><br><br>
+                      <center>  <h1>{% if user.title %} {{user.title}} {% else %}The Great Title Of The Great Diary {% endif %}</h1>  <center>
+                      <br>
+                      <center> <i> @{{user.nickname}}  </i> </center> 
+                      <br>
+                      <center> {% if user.about %} {{user.about}} {% else %} the great description of me, myself and I  {% endif %} </center> 
+            
+                </div>
+            </div>
+
+            <div class="row">
+              <div  class="col-md-8" style=" background-image: url(/static/h-o-bg.png);   border-radius: 10px; padding: 10px;">
+
+{% block content %} {% endblock %}
+
+               
+              </div>
+
+               <div class="col-md-4" >
+               
+                   <div class="col-md-12" style="border-radius: 15px; margin-bottom:10px; padding: 0px; margin-right: 0;"> 
+
+                       <button onClick='location.href="/index"' style="background: linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 15px 15px 0 0;"> Feed </button> 
+                       <button onClick='location.href="/followers"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666;"> People reading me </button> 
+                       <button onClick='location.href=""' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666;"> People I read </button> 
+{% if user.id == g.user.id %}                       <button onClick='location.href="/settings"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;" > Settings </button> 
+{% elif not g.user.is_following(user) %}            <button onClick='location.href="/follow/{{user.nickname}}"' style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;"> Follow </button>                     
+{% else %}                                          <button onClick='location.href="/unfollow/{{user.nickname}}"'style="background:linear-gradient(to bottom, #454341, #242424); height:40px; width: 100%; color: #E0E0E0; border-color: #666666; border-radius: 0 0 15px 15px;"> Unfollow </button>
+{% endif %}
+
+                   </div>
+
+
+                   <div class="col-md-12" style=" border-radius: 15px; margin-bottom:10px; color: #E0E0E0; padding: 10px; background:linear-gradient(to bottom, #454341, #242424); border-color: #666666;"> 
+
+                        <b>People you re reading:</b><nobr><hr>
+                      <center>
+            <table height=50>
+                            <tr>
+                                <td rowspan="0"> <img style="border-radius: 5px;" height=50 src="https://pbs.twimg.com/profile_images/378800000677390327/9681866d0a94b02ff7c1d08728358512_bigger.png">  </td>
+                                <td width=5>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td cellpadding=4><b> His Name Is Jesse  </b>
+                                <br> and this is his self vision  </td>
+                            <tr>
+                        </table>
+                      </center>
+                   </div>
+
+                   <div class="col-md-12" style=" border-radius: 15px; color: #E0E0E0; padding: 10px; background:linear-gradient(to bottom, #454341, #242424); border-color: #666666; vertical-align: middle; "> 
+                      <center>
+                        <img src="/static/gog.png" width=30% style="vertical-align: middle; ">
+                    <button onClick='location.href="/logout"' style="height:48px; background: #938D80; width: 48px; border-radius: 24px; background-image: url(/static/b-bye.png); margin: 0;"></button>  
+                        <img src="/static/gog.png" width=30% style="transform: scale(-1, 1)">
+                      </center>
+
+                   </div>
+
+               </div>
+
+           </div>
+
+        </div>
+
+        <div class="col-md-1"> </div>
+
+    </div>
+ </div>
+    
+    
+  </body>
+</html>
+
+
